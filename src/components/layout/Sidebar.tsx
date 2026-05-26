@@ -53,15 +53,25 @@ export function Sidebar() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 }}
               >
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center">
+                <motion.div
+                  className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 via-indigo-500 to-cyan-500 flex items-center justify-center shadow-[0_0_20px_rgba(99,102,241,0.4)]"
+                  animate={{ boxShadow: ['0 0 20px rgba(99,102,241,0.4)', '0 0 30px rgba(34,211,238,0.5)', '0 0 20px rgba(99,102,241,0.4)'] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                >
                   <svg viewBox="0 0 32 32" className="w-6 h-6">
+                    <defs>
+                      <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#ffffff" />
+                        <stop offset="100%" stopColor="#e0e7ff" />
+                      </linearGradient>
+                    </defs>
                     <path
                       d="M16 4 L28 12 L28 20 L16 28 L4 20 L4 12 Z"
-                      fill="white"
+                      fill="url(#logoGradient)"
                     />
-                    <circle cx="16" cy="16" r="4" fill="url(#logoGradient)" />
+                    <circle cx="16" cy="16" r="4" fill="#6366f1" />
                   </svg>
-                </div>
+                </motion.div>
                 <div>
                   <h1 className="font-semibold text-lg">FocusFlow</h1>
                   <p className="text-xs text-zinc-500">Peak Productivity</p>
@@ -84,9 +94,9 @@ export function Sidebar() {
                   <motion.button
                     key={item.id}
                     onClick={() => setCurrentView(item.id)}
-                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 relative overflow-hidden ${
                       currentView === item.id
-                        ? 'bg-gradient-to-r from-indigo-500/20 to-cyan-500/20 text-white border border-indigo-500/30'
+                        ? 'bg-gradient-to-r from-indigo-500/20 via-indigo-500/10 to-cyan-500/20 text-white border border-indigo-500/30'
                         : 'text-zinc-400 hover:text-white hover:bg-white/5'
                     }`}
                     initial={{ opacity: 0, x: -20 }}
@@ -95,15 +105,23 @@ export function Sidebar() {
                     whileHover={{ x: 4 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <span className={currentView === item.id ? 'text-indigo-400' : ''}>
-                      {item.icon}
-                    </span>
-                    <span className="font-medium">{item.label}</span>
                     {currentView === item.id && (
                       <motion.div
-                        className="ml-auto w-1.5 h-1.5 rounded-full bg-indigo-400"
+                        className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 to-transparent"
+                        layoutId="activeBg"
+                        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                      />
+                    )}
+                    <span className={`relative z-10 ${currentView === item.id ? 'text-indigo-300' : ''}`}>
+                      {item.icon}
+                    </span>
+                    <span className="font-medium relative z-10">{item.label}</span>
+                    {currentView === item.id && (
+                      <motion.div
+                        className="ml-auto w-1.5 h-1.5 rounded-full bg-indigo-400 relative z-10"
                         layoutId="activeIndicator"
                         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                        style={{ boxShadow: '0 0 8px rgba(99,102,241,0.6)' }}
                       />
                     )}
                   </motion.button>
@@ -119,9 +137,9 @@ export function Sidebar() {
                   <motion.button
                     key={item.id}
                     onClick={() => setCurrentView(item.id)}
-                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 relative overflow-hidden ${
                       currentView === item.id
-                        ? 'bg-gradient-to-r from-fuchsia-500/20 to-pink-500/20 text-white border border-fuchsia-500/30'
+                        ? 'bg-gradient-to-r from-fuchsia-500/20 via-pink-500/10 to-indigo-500/20 text-white border border-fuchsia-500/30'
                         : 'text-zinc-400 hover:text-white hover:bg-white/5'
                     }`}
                     initial={{ opacity: 0, x: -20 }}
@@ -130,27 +148,48 @@ export function Sidebar() {
                     whileHover={{ x: 4 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <span className={currentView === item.id ? 'text-fuchsia-400' : ''}>
+                    {currentView === item.id && (
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-fuchsia-500/5 to-transparent"
+                        layoutId="activeAssistantBg"
+                        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                      />
+                    )}
+                    <span className={`relative z-10 ${currentView === item.id ? 'text-fuchsia-300' : ''}`}>
                       {item.icon}
                     </span>
-                    <span className="font-medium">{item.label}</span>
+                    <span className="font-medium relative z-10">{item.label}</span>
+                    {currentView === item.id && (
+                      <motion.div
+                        className="ml-auto w-1.5 h-1.5 rounded-full bg-fuchsia-400 relative z-10"
+                        layoutId="activeAssistantIndicator"
+                        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                        style={{ boxShadow: '0 0 8px rgba(168,85,247,0.6)' }}
+                      />
+                    )}
                   </motion.button>
                 ))}
               </div>
             </nav>
 
-            <div className="p-4 border-t border-white/5">
+            <div className="p-4 border-t border-white/5 bg-gradient-to-b from-transparent to-black/20">
               {user ? (
                 <motion.div
-                  className="flex items-center gap-3 p-3 rounded-xl bg-white/5"
+                  className="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10 relative overflow-hidden"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
+                  whileHover={{ scale: 1.02 }}
                 >
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center">
-                    <User size={18} />
-                  </div>
-                  <div className="flex-1 min-w-0">
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 via-transparent to-cyan-500/5" />
+                  <motion.div
+                    className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center relative z-10 shadow-[0_0_15px_rgba(99,102,241,0.3)]"
+                    animate={{ boxShadow: ['0 0 15px rgba(99,102,241,0.3)', '0 0 20px rgba(34,211,238,0.4)', '0 0 15px rgba(99,102,241,0.3)'] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <User size={18} className="text-white" />
+                  </motion.div>
+                  <div className="flex-1 min-w-0 relative z-10">
                     <p className="font-medium text-sm truncate">{user.displayName || 'User'}</p>
                     <p className="text-xs text-zinc-500">
                       Level {stats?.level || 1} · {stats?.totalXp || 0} XP
@@ -159,11 +198,12 @@ export function Sidebar() {
                 </motion.div>
               ) : (
                 <motion.div
-                  className="flex items-center gap-3 p-3 rounded-xl bg-white/5 cursor-pointer hover:bg-white/10 transition-colors"
+                  className="flex items-center gap-3 p-3 rounded-xl bg-white/5 cursor-pointer hover:bg-white/10 transition-colors border border-white/5 hover:border-white/10"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
                   onClick={() => setCurrentView('settings')}
+                  whileHover={{ scale: 1.02 }}
                 >
                   <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
                     <User size={18} className="text-zinc-400" />

@@ -29,8 +29,16 @@ export function ProgressRing({
         <defs>
           <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#818cf8" />
+            <stop offset="50%" stopColor="#6366f1" />
             <stop offset="100%" stopColor="#22d3ee" />
           </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
         </defs>
 
         <circle
@@ -50,6 +58,7 @@ export function ProgressRing({
           strokeWidth={strokeWidth}
           fill="none"
           strokeLinecap="round"
+          filter="url(#glow)"
           initial={{ strokeDashoffset: circumference }}
           animate={{ strokeDashoffset: offset }}
           transition={{ duration: 1, ease: 'easeOut' }}
@@ -59,7 +68,7 @@ export function ProgressRing({
 
       {showPercentage && (
         <motion.span
-          className="absolute text-2xl font-bold"
+          className="absolute text-2xl font-bold bg-gradient-to-br from-white to-zinc-300 bg-clip-text text-transparent"
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3 }}
