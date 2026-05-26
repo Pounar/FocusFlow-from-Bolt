@@ -1,2 +1,2 @@
-# FocusFlow-from-bolt
+# FocusFlow-from-Bolt
 Tool for Peak Productivity
