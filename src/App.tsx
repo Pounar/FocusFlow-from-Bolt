@@ -27,7 +27,7 @@ function App() {
   }
 
   return (
-    <div className="h-screen overflow-hidden bg-[#0a0a0f] flex">
+    <div className="h-screen w-screen overflow-hidden bg-[#0a0a0f] relative">
       <Logo />
       <Sidebar />
 
@@ -36,18 +36,20 @@ function App() {
       </AnimatePresence>
 
       {!showOnboarding && (
-        <main className="flex-1 overflow-y-auto pt-4">
-          <AnimatePresence mode="wait">
-            {currentView === 'dashboard' && <Dashboard key="dashboard" />}
-            {currentView === 'habits' && <Habits key="habits" />}
-            {currentView === 'planner' && <Planner key="planner" />}
-            {currentView === 'focus' && <FocusMode key="focus" />}
-            {currentView === 'notes' && <Notes key="notes" />}
-            {currentView === 'reminders' && <Reminders key="reminders" />}
-            {currentView === 'analytics' && <Analytics key="analytics" />}
-            {currentView === 'settings' && <Settings key="settings" />}
-            {currentView === 'assistant' && <Assistant key="assistant" />}
-          </AnimatePresence>
+        <main className="h-full overflow-y-auto flex justify-center">
+          <div className="w-full max-w-6xl">
+            <AnimatePresence mode="wait">
+              {currentView === 'dashboard' && <Dashboard key="dashboard" />}
+              {currentView === 'habits' && <Habits key="habits" />}
+              {currentView === 'planner' && <Planner key="planner" />}
+              {currentView === 'focus' && <FocusMode key="focus" />}
+              {currentView === 'notes' && <Notes key="notes" />}
+              {currentView === 'reminders' && <Reminders key="reminders" />}
+              {currentView === 'analytics' && <Analytics key="analytics" />}
+              {currentView === 'settings' && <Settings key="settings" />}
+              {currentView === 'assistant' && <Assistant key="assistant" />}
+            </AnimatePresence>
+          </div>
         </main>
       )}
 
@@ -55,5 +57,8 @@ function App() {
     </div>
   )
 }
+
+export default App
+
 
 export default App

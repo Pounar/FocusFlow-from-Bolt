@@ -177,18 +177,18 @@ Would you like more specific advice on any of these areas?`
 
   return (
     <motion.div
-      className="h-[calc(100vh-2rem)] flex flex-col max-w-3xl mx-auto p-6"
+      className="h-full flex flex-col w-full px-4 py-6 md:px-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
-      <div className="mb-6">
+      <div className="mb-5">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-fuchsia-500 to-indigo-500 flex items-center justify-center">
-            <Sparkles size={20} />
+          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-fuchsia-500 to-indigo-500 flex items-center justify-center">
+            <Sparkles size={18} />
           </div>
           <div>
-            <h1 className="text-2xl font-bold">AI Assistant</h1>
-            <p className="text-sm text-zinc-500">Your personal productivity coach</p>
+            <h1 className="text-xl font-bold">AI Assistant</h1>
+            <p className="text-xs text-zinc-500">Your personal productivity coach</p>
           </div>
         </div>
       </div>

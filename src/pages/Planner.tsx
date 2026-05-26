@@ -82,13 +82,13 @@ export function Planner() {
 
   return (
     <motion.div
-      className="px-4 py-5 md:px-6 lg:px-8 max-w-5xl mx-auto"
+      className="px-4 py-6 md:px-6 w-full"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
       <div className="flex items-center justify-between mb-5">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold">Planner</h1>
+          <h1 className="text-2xl font-bold">Planner</h1>
           <p className="text-zinc-500 text-sm">Plan your day for maximum productivity</p>
         </div>
 
@@ -97,8 +97,8 @@ export function Planner() {
           size="sm"
           onClick={() => setGeneratePlanOpen(true)}
         >
-          <Sparkles size={16} />
-          Generate My Day
+          <Sparkles size={14} />
+          Generate
         </Button>
       </div>
 

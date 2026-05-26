@@ -32,16 +32,16 @@ export function Settings() {
 
   return (
     <motion.div
-      className="p-6 md:p-8 max-w-3xl mx-auto"
+      className="px-4 py-6 md:px-6 w-full max-w-2xl"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Settings</h1>
-        <p className="text-zinc-500">Customize your FocusFlow experience</p>
+      <div className="mb-5">
+        <h1 className="text-2xl font-bold">Settings</h1>
+        <p className="text-zinc-500 text-sm">Customize your FocusFlow experience</p>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-4">
         <GlassCard className="p-6">
           <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
             <User className="text-indigo-400" size={20} />

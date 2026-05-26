@@ -85,22 +85,23 @@ export function Reminders() {
 
   return (
     <motion.div
-      className="p-6 md:p-8 max-w-4xl mx-auto"
+      className="px-4 py-6 md:px-6 w-full"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
-      <div className="flex items-start justify-between mb-8">
+      <div className="flex items-center justify-between mb-5">
         <div>
-          <h1 className="text-3xl font-bold mb-2">Reminders</h1>
-          <p className="text-zinc-500">Never miss an important moment</p>
+          <h1 className="text-2xl font-bold">Reminders</h1>
+          <p className="text-zinc-500 text-sm">Never miss an important moment</p>
         </div>
 
         <Button
           variant="primary"
+          size="sm"
           onClick={() => setShowAddReminder(true)}
         >
-          <Plus size={18} />
-          Add Reminder
+          <Plus size={14} />
+          Add
         </Button>
       </div>
 

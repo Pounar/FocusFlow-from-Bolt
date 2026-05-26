@@ -45,16 +45,16 @@ export function Analytics() {
 
   return (
     <motion.div
-      className="p-6 md:p-8 max-w-6xl mx-auto"
+      className="px-4 py-6 md:px-6 w-full"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Analytics</h1>
-        <p className="text-zinc-500">Insights into your productivity journey</p>
+      <div className="mb-5">
+        <h1 className="text-2xl font-bold">Analytics</h1>
+        <p className="text-zinc-500 text-sm">Insights into your productivity journey</p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-5">
         {[
           {
             label: 'Total Focus',

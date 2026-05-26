@@ -34,20 +34,20 @@ export function Dashboard() {
 
   return (
     <motion.div
-      className="px-4 py-5 md:px-6 lg:px-8 max-w-6xl mx-auto"
+      className="px-4 py-6 md:px-6 w-full"
       variants={staggerContainer}
       initial="hidden"
       animate="show"
     >
       <motion.div variants={staggerItem} className="mb-6">
         <p className="text-zinc-500 text-xs mb-0.5">{format(new Date(), 'EEEE, MMMM d')}</p>
-        <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
+        <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
           Good {getGreeting()}!
         </h1>
         <p className="text-zinc-500 text-sm mt-1">Here's your productivity overview</p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-5">
         <motion.div variants={staggerItem}>
           <GlassCard className="p-4">
             <div className="flex items-start justify-between mb-3">

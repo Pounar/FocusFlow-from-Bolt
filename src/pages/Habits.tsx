@@ -61,13 +61,13 @@ export function Habits() {
 
   return (
     <motion.div
-      className="px-4 py-6 md:px-6 lg:px-8 max-w-5xl mx-auto"
+      className="px-4 py-6 md:px-6 w-full"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-5">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold">Habits</h1>
+          <h1 className="text-2xl font-bold">Habits</h1>
           <p className="text-zinc-500 text-sm">Build consistency, achieve greatness</p>
         </div>
 
@@ -76,17 +76,17 @@ export function Habits() {
             <p className="text-xs text-zinc-500">Today's Progress</p>
             <p className="text-lg font-bold">{completedToday}/{activeHabits.length}</p>
           </div>
-          <ProgressRing progress={progress} size={56} strokeWidth={5} />
+          <ProgressRing progress={progress} size={52} strokeWidth={5} />
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-3 mb-5">
+      <div className="grid grid-cols-2 gap-2 mb-4">
         <GlassCard className="p-3">
           <div className="flex items-center gap-2">
-            <Flame className="text-orange-400" size={20} />
+            <Flame className="text-orange-400" size={18} />
             <div>
-              <p className="text-xs text-zinc-500">Streak</p>
-              <p className="text-lg font-bold">{stats?.currentStreak || 0}d</p>
+              <p className="text-[10px] text-zinc-500">Streak</p>
+              <p className="text-base font-bold">{stats?.currentStreak || 0}d</p>
             </div>
           </div>
         </GlassCard>
