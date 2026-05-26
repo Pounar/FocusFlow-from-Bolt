@@ -61,42 +61,42 @@ export function Habits() {
 
   return (
     <motion.div
-      className="p-6 md:p-8 max-w-5xl mx-auto"
+      className="px-4 py-6 md:px-6 lg:px-8 max-w-5xl mx-auto"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
-      <div className="flex items-start justify-between mb-8">
+      <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-3xl font-bold mb-2">Habits</h1>
-          <p className="text-zinc-500">Build consistency, achieve greatness</p>
+          <h1 className="text-2xl md:text-3xl font-bold">Habits</h1>
+          <p className="text-zinc-500 text-sm">Build consistency, achieve greatness</p>
         </div>
 
-        <div className="flex items-center gap-4">
-          <div className="text-right">
-            <p className="text-sm text-zinc-500">Today's Progress</p>
-            <p className="text-2xl font-bold">{completedToday}/{activeHabits.length}</p>
+        <div className="flex items-center gap-3">
+          <div className="text-right hidden sm:block">
+            <p className="text-xs text-zinc-500">Today's Progress</p>
+            <p className="text-lg font-bold">{completedToday}/{activeHabits.length}</p>
           </div>
-          <ProgressRing progress={progress} size={70} strokeWidth={6} />
+          <ProgressRing progress={progress} size={56} strokeWidth={5} />
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <GlassCard className="p-4">
-          <div className="flex items-center gap-3">
-            <Flame className="text-orange-400" size={24} />
+      <div className="grid grid-cols-2 gap-3 mb-5">
+        <GlassCard className="p-3">
+          <div className="flex items-center gap-2">
+            <Flame className="text-orange-400" size={20} />
             <div>
-              <p className="text-sm text-zinc-500">Current Streak</p>
-              <p className="text-xl font-bold">{stats?.currentStreak || 0} days</p>
+              <p className="text-xs text-zinc-500">Streak</p>
+              <p className="text-lg font-bold">{stats?.currentStreak || 0}d</p>
             </div>
           </div>
         </GlassCard>
 
-        <GlassCard className="p-4">
-          <div className="flex items-center gap-3">
-            <Target className="text-indigo-400" size={24} />
+        <GlassCard className="p-3">
+          <div className="flex items-center gap-2">
+            <Target className="text-indigo-400" size={20} />
             <div>
-              <p className="text-sm text-zinc-500">Total Habits</p>
-              <p className="text-xl font-bold">{activeHabits.length}</p>
+              <p className="text-xs text-zinc-500">Total</p>
+              <p className="text-lg font-bold">{activeHabits.length}</p>
             </div>
           </div>
         </GlassCard>
@@ -105,10 +105,11 @@ export function Habits() {
       <div className="mb-4">
         <Button
           variant="primary"
+          size="sm"
           onClick={() => setShowAddHabit(true)}
-          icon={<Plus size={18} />}
+          icon={<Plus size={16} />}
         >
-          Add New Habit
+          Add Habit
         </Button>
       </div>
 
@@ -153,7 +154,7 @@ export function Habits() {
         )}
       </AnimatePresence>
 
-      <div className="space-y-3">
+      <div className="space-y-2">
         <AnimatePresence mode="popLayout">
           {activeHabits.map((habit: Habit, index: number) => (
             <motion.div
@@ -162,20 +163,20 @@ export function Habits() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9, x: -100 }}
-              transition={{ delay: index * 0.05 }}
+              transition={{ delay: index * 0.03 }}
             >
               <GlassCard
-                className={`p-4 ${habit.todayCompleted ? 'opacity-75' : ''}`}
+                className={`p-3 ${habit.todayCompleted ? 'opacity-75' : ''}`}
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                   <motion.button
                     onClick={() => toggleHabitComplete(habit.id)}
-                    className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all ${
+                    className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all ${
                       habit.todayCompleted
                         ? 'bg-emerald-500/20 text-emerald-400'
                         : 'bg-white/5 hover:bg-white/10 text-zinc-400'
                     }`}
-                    style={{ borderLeft: `4px solid ${habit.color}` }}
+                    style={{ borderLeft: `3px solid ${habit.color}` }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -185,19 +186,19 @@ export function Habits() {
                         animate={{ scale: 1 }}
                         transition={{ type: 'spring', stiffness: 500 }}
                       >
-                        <Check size={24} />
+                        <Check size={20} />
                       </motion.div>
                     ) : (
-                      <Target size={24} />
+                      <Target size={20} />
                     )}
                   </motion.button>
 
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-lg">{habit.name}</h3>
-                    <div className="flex items-center gap-4 text-sm text-zinc-500">
+                    <h3 className="font-medium">{habit.name}</h3>
+                    <div className="flex items-center gap-3 text-xs text-zinc-500">
                       <span className="flex items-center gap-1">
-                        <Flame size={14} className="text-orange-400" />
-                        {habit.streak || 0} day streak
+                        <Flame size={12} className="text-orange-400" />
+                        {habit.streak || 0}d
                       </span>
                       {habit.frequency === 'daily' && (
                         <span>Daily</span>
@@ -205,21 +206,21 @@ export function Habits() {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1">
                     <motion.button
-                      className="p-2 rounded-lg hover:bg-white/10 text-zinc-400 hover:text-white transition-colors"
+                      className="p-1.5 rounded-lg hover:bg-white/10 text-zinc-500 hover:text-white transition-colors"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                     >
-                      <Edit3 size={18} />
+                      <Edit3 size={16} />
                     </motion.button>
                     <motion.button
                       onClick={() => deleteHabit(habit.id)}
-                      className="p-2 rounded-lg hover:bg-red-500/20 text-zinc-400 hover:text-red-400 transition-colors"
+                      className="p-1.5 rounded-lg hover:bg-red-500/20 text-zinc-500 hover:text-red-400 transition-colors"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                     >
-                      <Trash2 size={18} />
+                      <Trash2 size={16} />
                     </motion.button>
                   </div>
                 </div>
@@ -232,10 +233,10 @@ export function Habits() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-center py-16"
+            className="text-center py-12"
           >
-            <Target className="mx-auto mb-4 text-zinc-600" size={48} />
-            <h3 className="text-xl font-semibold mb-2 text-zinc-400">No habits yet</h3>
+            <Target className="mx-auto mb-3 text-zinc-600" size={40} />
+            <h3 className="text-lg font-semibold mb-1 text-zinc-400">No habits yet</h3>
             <p className="text-zinc-500 mb-4">Start building your daily routine</p>
             <Button variant="primary" onClick={() => setShowAddHabit(true)}>
               <Plus size={18} />

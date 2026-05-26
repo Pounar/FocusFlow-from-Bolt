@@ -27,7 +27,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f]">
+    <div className="h-screen overflow-hidden bg-[#0a0a0f] flex">
       <Logo />
       <Sidebar />
 
@@ -36,7 +36,7 @@ function App() {
       </AnimatePresence>
 
       {!showOnboarding && (
-        <main className="ml-0 transition-all duration-300">
+        <main className="flex-1 overflow-y-auto pt-4">
           <AnimatePresence mode="wait">
             {currentView === 'dashboard' && <Dashboard key="dashboard" />}
             {currentView === 'habits' && <Habits key="habits" />}
